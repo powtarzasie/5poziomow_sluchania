@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5 Poziomów Słuchania - Stephen Covey</title>
+    <style>
+        :root {
+            --color-bg: #f8f9fa;
+            --color-text: #1a1a1a;
+            --color-text-light: #666;
+            --color-level-1: #FF6B6B;
+            --color-level-2: #FFA94D;
+            --color-level-3: #FFD43B;
+            --color-level-4: #51CF66;
+            --color-level-5: #748FFC;
+            --color-border: #e0e0e0;
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.1);
+            --shadow-md: 0 4px 16px rgba(0,0,0,0.15);
+            --shadow-lg: 0 8px 24px rgba(0,0,0,0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ========== HERO ========== */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .hero h1 {
+            font-size: 3em;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.3em;
+            opacity: 0.95;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* ========== INTRO ========== */
+        .intro {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            margin-bottom: 60px;
+            box-shadow: var(--shadow-md);
+        }
+
+        .intro h2 {
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            color: #667eea;
+        }
+
+        .intro p {
+            font-size: 1.05em;
+            margin-bottom: 15px;
+            color: var(--color-text-light);
+            line-height: 1.8;
+        }
+
+        /* ========== PROGRESS BAR ========== */
+        .progress-container {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+            margin: 60px 0;
+            margin-bottom: 80px;
+        }
+
+        .progress-item {
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .progress-item:hover {
+            transform: scale(1.05);
+        }
+
+        .progress-dot {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            margin: 0 auto 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+            font-size: 24px;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .level-1 .progress-dot { background: var(--color-level-1); }
+        .level-2 .progress-dot { background: var(--color-level-2); }
+        .level-3 .progress-dot { background: var(--color-level-3); color: #333; }
+        .level-4 .progress-dot { background: var(--color-level-4); }
+        .level-5 .progress-dot { background: var(--color-level-5); }
+
+        .progress-item p {
+            font-size: 0.95em;
+            font-weight: 600;
+        }
+
+        /* ========== LEVEL CARDS ========== */
+        .levels-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .level-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s ease;
+        }
+
+        .level-card:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-5px);
+        }
+
+        .level-header {
+            padding: 30px;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .level-1 .level-header { background: linear-gradient(135deg, #FF6B6B, #FF5252); }
+        .level-2 .level-header { background: linear-gradient(135deg, #FFA94D, #FF9500); }
+        .level-3 .level-header { background: linear-gradient(135deg, #FFD43B, #FFC107); }
+        .level-4 .level-header { background: linear-gradient(135deg, #51CF66, #2CBF60); }
+        .level-5 .level-header { background: linear-gradient(135deg, #748FFC, #5E72E4); }
+
+        .level-icon {
+            font-size: 3em;
+        }
+
+        .level-header h2 {
+            font-size: 1.8em;
+            margin-bottom: 5px;
+        }
+
+        .level-header p {
+            opacity: 0.95;
+            font-size: 0.95em;
+        }
+
+        .level-content {
+            padding: 30px;
+        }
+
+        .section {
+            margin-bottom: 25px;
+        }
+
+        .section-title {
+            font-size: 1.1em;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: #333;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title::before {
+            content: '';
+            width: 4px;
+            height: 20px;
+            background: var(--color-level-1);
+            border-radius: 2px;
+        }
+
+        .level-2 .section-title::before { background: var(--color-level-2); }
+        .level-3 .section-title::before { background: var(--color-level-3); }
+        .level-4 .section-title::before { background: var(--color-level-4); }
+        .level-5 .section-title::before { background: var(--color-level-5); }
+
+        /* ========== DIALOGS ========== */
+        .dialog-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 15px;
+        }
+
+        .dialog {
+            background: #f5f5f5;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #999;
+        }
+
+        .dialog.good {
+            background: #f0f8e8;
+            border-left-color: #51CF66;
+        }
+
+        .dialog.bad {
+            background: #ffe8e8;
+            border-left-color: #FF6B6B;
+        }
+
+        .dialog-label {
+            font-weight: 700;
+            font-size: 0.9em;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .dialog.good .dialog-label { color: #51CF66; }
+        .dialog.bad .dialog-label { color: #FF6B6B; }
+
+        .dialog p {
+            font-size: 0.95em;
+            line-height: 1.6;
+            margin-bottom: 8px;
+        }
+
+        .speaker {
+            font-weight: 600;
+            font-size: 0.85em;
+            margin-bottom: 5px;
+            opacity: 0.8;
+        }
+
+        /* ========== RED FLAGS ========== */
+        .red-flags {
+            background: #ffe8e8;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #FF6B6B;
+        }
+
+        .red-flags ul {
+            list-style: none;
+            margin: 10px 0 0 0;
+        }
+
+        .red-flags li {
+            padding: 6px 0;
+            padding-left: 24px;
+            position: relative;
+            font-size: 0.95em;
+        }
+
+        .red-flags li::before {
+            content: '⚠️ ';
+            position: absolute;
+            left: 0;
+        }
+
+        /* ========== EXERCISE ========== */
+        .exercise {
+            background: #f0f8ff;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #51CF66;
+        }
+
+        .exercise-step {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .exercise-number {
+            min-width: 30px;
+            height: 30px;
+            background: #51CF66;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .exercise-text {
+            padding-top: 3px;
+            font-size: 0.95em;
+        }
+
+        /* ========== HOW TO ADVANCE ========== */
+        .advance {
+            background: #f5f0ff;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #748FFC;
+        }
+
+        .advance-point {
+            margin-bottom: 12px;
+            font-size: 0.95em;
+        }
+
+        .advance-point strong {
+            color: #748FFC;
+        }
+
+        /* ========== COMPARISON TABLE ========== */
+        .comparison {
+            background: white;
+            padding: 40px;
+            border-radius: 16px;
+            margin-top: 80px;
+            box-shadow: var(--shadow-md);
+        }
+
+        .comparison h2 {
+            font-size: 2em;
+            margin-bottom: 40px;
+            text-align: center;
+            color: #333;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .comparison-item {
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            font-size: 0.9em;
+            line-height: 1.6;
+        }
+
+        .comparison-item.level-1 { background: rgba(255, 107, 107, 0.1); border: 2px solid #FF6B6B; }
+        .comparison-item.level-2 { background: rgba(255, 169, 77, 0.1); border: 2px solid #FFA94D; }
+        .comparison-item.level-3 { background: rgba(255, 212, 59, 0.1); border: 2px solid #FFD43B; }
+        .comparison-item.level-4 { background: rgba(81, 207, 102, 0.1); border: 2px solid #51CF66; }
+        .comparison-item.level-5 { background: rgba(116, 143, 252, 0.1); border: 2px solid #748FFC; }
+
+        .comparison-item h4 {
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .comparison-item p {
+            margin: 5px 0;
+            opacity: 0.85;
+        }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2em; }
+            .hero p { font-size: 1.1em; }
+            .dialog-container { grid-template-columns: 1fr; }
+            .comparison-grid { grid-template-columns: 1fr; }
+            .progress-container { grid-template-columns: repeat(3, 1fr); gap: 15px; }
+        }
+
+        .cta-section {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 16px;
+            margin-top: 60px;
+            margin-bottom: 40px;
+        }
+
+        .cta-section h3 {
+            font-size: 1.8em;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            background: white;
+            color: #667eea;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.05em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: var(--shadow-lg);
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <div class="container">
+            <h1>🎧 Pięć Poziomów Słuchania</h1>
+            <p>Naucz się słuchać - от ignorowania do miłości bez osądu</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- INTRO -->
+        <div class="intro">
+            <h2>Dlaczego słuchanie ma znaczenie?</h2>
+            <p><strong>Większość ludzi nie słucha, aby zrozumieć – słucha, aby odpowiedzieć.</strong> Stephen Covey odkrył, że słuchanie przebiega w pięciu poziomach, od całkowitego ignorowania do głębokie empatii.</p>
+            <p>Każdy poziom ma różne konsekwencje dla osoby mówiącej. Im wyższy poziom, tym większe zaufanie, głębsze więzi i lepsze rozumienie.</p>
+            <p>Przejdź przez każdy poziom, zobacz realne scenariusze (dobrze i źle), odkryj red flags, i naucz się praktycznego ćwiczenia, aby awansować.</p>
+        </div>
+
+        <!-- PROGRESS BAR -->
+        <div class="progress-container">
+            <div class="progress-item level-1">
+                <div class="progress-dot">1️�</div>
+                <p>Ignorowanie</p>
+            </div>
+            <div class="progress-item level-2">
+                <div class="progress-dot">2️�</div>
+                <p>Pozorowanie</p>
+            </div>
+            <div class="progress-item level-3">
+                <div class="progress-dot">3️�</div>
+                <p>Selektywne</p>
+            </div>
+            <div class="progress-item level-4">
+                <div class="progress-dot">4️�</div>
+                <p>Aktywne</p>
+            </div>
+            <div class="progress-item level-5">
+                <div class="progress-dot">5️�</div>
+                <p>Ze Złączenia</p>
+            </div>
+        </div>
+
+        <!-- LEVELS -->
+        <div class="levels-grid">
+            <!-- LEVEL 1 -->
+            <div class="level-card level-1">
+                <div class="level-header">
+                    <div class="level-icon">📵</div>
+                    <div>
+                        <h2>Poziom 1: Ignorowanie</h2>
+                        <p>Całkowity brak skupienia – bycie nieobecnym</p>
+                    </div>
+                </div>
+                <div class="level-content">
+                    <div class="section">
+                        <div class="section-title">Co się dzieje?</div>
+                        <p>Osoba udaje słuchanie, ale jej umysł jest całkowicie zajęty czymś innym – telefonem, myślami o sobie, planami na wieczór, pracą. Rozmówca wie dokładnie, że nie jest słuchany.</p>
+                    </div>
+
+                    <div class="section">
+                        <div class="section-title">Realne Scenariusze</div>
+                        <div class="dialog-container">
+                            <div class="dialog bad">
+                                <div class="dialog-label">❌ Źle - Ignorowanie</div>
+                                <div class="speaker">Marta (żona):</div>
+                                <p>„Kochanie, dziś coś mnie nie puszczało w pracy. Mój szef..."</p>
+                                <div class="speaker">Robert (mąż):</div>
+                                <p>[Scrolluje telefon, nie podnosi wzroku] „Hmm, ok." [Myśli: „Co jest w piątek wieczorem?"]</p>
+                            </div>
+                            <div class="dialog good">
+                                <div class="dialog-label">✅ Dobrze (Poziom 4)</div>
+                                <div class="speaker">Marta (żona):</div>
+                                <p>„Kochanie, dziś coś mnie nie puszczało w pracy. Mój szef..."</p>
+                                <div class="speaker">Robert (mąż):</div>
+                                <p>[Odłożył telefon, patrzy prosto na nią] „Opowiadaj, słucham. Brakowało ci czegoś?"</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="section">
+                        <div class="section-title">Psychologiczny Wpływ na Mówiącego</div>
+                        <p>🧠 <strong>Mózg wchodzi w tryb obronny</strong> – aktywuje się system lęku. Osoba czuje się zagrożona i niedoceniana.</p>
+                        <p>💔 <strong>Emocje:</strong> Poczucie odrzucenia, bólu emocjonalnego, braku znaczenia i wartości.</p>
+                        <p>🚫 <strong>Długofalowy efekt:</strong> Niszczy zaufanie, osoba przestaje się otwierać, więzi się rozpadają.</p>
+                    </div>
+
+                    <div class="red-flags">
+                        <strong>Red Flags – Czy Ignorujesz?</strong>
+                        <ul>
+                            <li>Patrzysz na telefon, kiedy ktoś mówi</li>
+                            <li>Nie pamiętasz co osoba powiedziała 30 sekund temu</li>
+                            <li>Myślisz o czymś innym, podczas gdy osoba mówi</li>
+                            <li>Rozmówca zauważa, że nie słuchasz i urywuje wypowiedź</li>
+                            <li>Osoba mówi Do ciebie – ale ty patrzysz W bok</li>
+                        </ul>
+                    </div>
+
+                    <div class="exercise">
+                        <strong>💪 Ćwiczenie: Wyjdź z Poziomu 1</strong>
+                        <div class="exercise-step">
+                            <div class="exercise-number">1</div>
+                            <div class="exercise-text"><strong>Świadomość:</strong> Zauważ, kiedy ignorujesz. Postaw sobie pytanie: „Czy wiem, co ta osoba czuje?"</div>
+                        </div>
+                        <div class="exercise-step">
+                            <div class="exercise-number">2</div>
+                            <div class="exercise-text"><strong>Fizyczne działanie:</strong> Świadomie odłóż telefon, zamknij laptopa, odwróć się twarzą do osoby.</div>
+                        </div>
+                        <div class="exercise-step">
+                            <div class="exercise-number">3</div>
+                            <div class="exercise-text"><strong>Eksperyment:</strong> Spróbuj słuchać przez 2 minuty bez przerywania. To mniej niż epizod serialu, ale zmieni relację.</div>
+                        </div>
+                        <div class="exercise-step">
+                            <div class="exercise-number">4</div>
+                            <div class="exercise-text"><strong>Refleksja:</strong> Po rozmowie zapytaj siebie: „Co czuła ta osoba? Czego potrzebowała?"</div>
+                        </div>
+                    </div>
+
+                    <div class="advance">
+                        <strong>🎯 Jak Przejść na Poziom 2?</strong>
+                        <div class="advance-point"><strong>Zamiast:</strong> Sprawdzać telefon → <strong>Rób:</strong> Wylącz powiadomienia na 5 minut rozmowy</div>
+                        <div class="advance-point"><strong>Zamiast:</strong> Myśleć o sobie → <strong>Rób:</strong> Powtórz sobie: „Teraz jest czas tej osoby"</div>
+                        <div class="advance-point"><strong>Zamiast:</strong> Być fizycznie obecnym → <strong>Rób:</strong> Bądź mentalnie obecny – utrzymuj kontakt wzrokowy</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- LEVEL 2 -->
+            <div class="level-card level-2">
+                <div class="level-header">
+                    <div class="level-icon">👁️</div>
+                    <div>
+                        <h2>Poziom 2: Pozorowanie Słuchania</h2>
+                        <p>Jesteś fizycznie obecny, ale czekasz na swoją kolej</p>
+                    </div>
+                </div>
+                <div class="level-content">
+                    <div class="section">
+                        <div class="section-title">Co się dzieje?</div>
+                        <p>Udajesz słuchanie, ale tak naprawdę tylko czekasz, kiedy będziesz mógł coś powiedzieć. Słyszysz słowa, ale nie rozumiesz emocji za nimi. To jest zapamiętywanie słów bez łapania znaczenia.</p>
+                    </div>
+
+                    <div class="section">
+                        <div class="section-title">Realne Scenariusze</div>
+                        <div class="dialog-container">
+                            <div class="dialog bad">
+                                <div class="dialog-label">❌ Źle - Pozorowanie</div>
+                                <div class="speaker">Marta (żona):</div>
+                                <p>„Byłam taka zdenerwowana tym, co powiedział mi szef..."</p>
+                                <div class="speaker">Robert (mąż):</div>
+                                <p>„A ja w pracy miałem znacznie gorsze doświadczenie. Mój boss..."</p>
+                                <p>[Nie czeka na koniec wypowiedzi, od razu przeskakuje do swojej historii]</p>
+                            </div>
+                            <div class="dialog good">
+                                <div class="dialog-label">✅ Dobrze (Poziom 4)</div>
+                                <div class="speaker">Marta (żona):</div>
+                                <p>„Byłam taka zdenerwowana tym, co powiedział mi szef..."</p>
+                                <div class="speaker">Robert (mąż):</div>
+                                <p>„Co się wtedy działo w tobie? Jak to do ciebie przemawiało?"</p>
+                                <p>[Czeka na odpowiedź, interesuje go emocja, nie fakt]</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="section">
+                        <div class="section-title">Psychologiczny Wpływ na Mówiącego</div>
+                        <p>🧠 <strong>Mózg czuje się „pół-słuchany"</strong> – nie wchodzi w tryb odkrywczy, ale i nie czuje się całkowicie zagrożony.</p>
+                        <p>💔 <strong>Emocje:</strong> Osoba czuje się użyta – mówi w próżnię. Jej historia nie zostaje usłyszana, a emocje pozostają niezauważone.</p>
+                        <p>⚠️ <strong>Efekt:</strong> Relacja jest powierzchowna. Nie ma głębi, tylko wymiana faktów.</p>
+                    </div>
+
+                    <div class="red-flags">
+                        <strong>Red Flags – Czy Pozorując Słuchasz?</strong>
+                        <ul>
+                            <li>Kiwasz głową, ale nie pamiętasz co osoba powiedziała</li>
+                            <li>Podczas gdy osoba mówi, przygotowujesz swoją odpowiedź</li>
+                            <li>Szybko przerywaś, aby powiedzieć swoją historię</li>
+                            <li>Osoba mówi: „Ale to nie o mnie, wróć do siebie" [mówi o sobie, nie o tobie]</li>
+                            <li>Nie pytasz „Co się wtedy czuło?" – tylko słuchasz faktów</li>
+                        </ul>
+                    </div>
+
+                    <div class="exercise">
+                        <strong>💪 Ćwiczenie: Wyjdź z Poziomu 2</strong>
+                        <div class="exercise-step">
+                            <div class="exercise-number">1</div>
+                            <div class="exercise-text"><strong>Zatrzymaj się:</strong> Zamiast planować odpowiedź, skoncentruj się na emocji za słowami. Zauważ ton głosu.</div>
+                        </div>
+                        <div class="exercise-step">
+                            <div class="exercise-number">2</div>
+                            <div class="exercise-text"><strong>Pytanie empatyczne:</strong> Zapytaj: „Co się wtedy działo w tobie?" lub „Jak do ciebie przemawiało?"</div>
+                        </div>
+                        <div class="exercise-step">
+                            <div class="exercise-number">3</div>
+                            <div class="exercise-text"><strong>Cierpliwość:</strong> Pozwól sobie być nudnym – nie planuj swojej odpowiedzi. Tempo rozmowy ustawia osoba mówiąca.</div>
+                        </div>
+                        <div class="exercise-step">
+                            <div class="exercise-number">4</div>
+                            <div class="exercise-text"><strong>Potwierdzenie:</strong> Na koniec powiedz: „Dziękuję, że mi to powiedziałeś" – to pokazuje, że usłyszałeś nie tylko słowa.</div>
+                        </div>
+                    </div>
+
+                    <div class="advance">
+                        <strong>🎯 Jak Przejść na Poziom 3?</strong>
+                        <div class="advance-point"><strong>Zamiast:</strong> Czekać na swoją kolej → <strong>Rób:</strong> Zamiast tego, zapamiętaj co osoba powiedziała i powtórz (bez interpretacji)</div>
+                        <div class="advance-point"><strong>Zamiast:</strong> Słuchać tylko faktów → <strong>Rób:</strong> Próbuj dostrzec emocje – smutek, radość, złość, strach</div>
+                        <div class="advance-point"><strong>Zamiast:</strong> Szybko reagować → <strong>Rób:</strong> Poczekaj 3 sekundy po tym, jak osoba skończy mówić</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- LEVEL 3 -->
+            <div class="level-card level-3">
+                <div class="level-header">
+                    <div class="level-icon">🎯</div>
+                    <div>
+                        <h2>Poziom 3: Selektywne Słuchanie</h2>
+                        <p>Słuchasz tylko tego, co cię interesuje</p>
+                    </div>
+                </div>
+                <div class="level-content">
+                    <div class="section">
+                        <div class="section-title">Co się dzieje?</div>
+                        <p>Wybierasz z opowieści fragmenty, które są dla ciebie ważne, a resztę ignorujesz. To filtrowanie przez pryzmat swoich własnych celów i zainteresowań. Słychać tylko „dobre bity", a resztę puszczasz mimo uszu.</p>
+                    </div>
+
+                    <div class="section">
+                        <div class="section-title">Realne Scenariusze</div>
+                        <div class="dialog-container">
+                            <div class="dialog bad">
+                                <div class="dialog-label">❌ Źle - Słuchanie Selektywne</div>
+                                <div class="speaker">Marta (żona):</div>
+                                <p>„Szef powiedział mi, że nie robię dobrze w reportach, ale powiedział też, że moja komunikacja jest świetna. Chociaż..."</p>
+                                <div class="speaker">Robert (mąż):</div>
+                                <p>„Czekaj, czekaj – powiedział, że robisz źle? To skandal! To jest błędy szefa."</p>
+                                <p>[Wychwyca jedno: krytykę. Nie słyszy: pozytywu, kontekstu, całej historii]</p>
+                            </div>
+                            <div class="dialog good">
+                                <div class="dialog-label">✅ Dobrze (Poziom 4)</div>
+                                <div class="speaker">Marta (żona):</div>
+                                <p>„Szef powiedział mi, że nie robię dobrze w reportach, ale powiedział też, że moja komunikacja jest świetna. Chociaż..."</p>
+                                <div class="speaker">Robert (mąż):</div>
+                                <p>„Opowiedzmy to po kolei. Najpierw – co powiedział o reportach? A potem – co powiedział o komunikacji?"</p>
+                                <p>[Słucha całej historii, bez selekcji]</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="section">
+                        <div class="section-title">Psychologiczny Wpływ na Mówiącego</div>
+                        <p>🧠 <strong>Mózg czuje się „niezrozumiany"</strong> – osoba mówi o całej sytuacji, ale słyszy tylko czę wyboru.</p>
+                        <p>💔 <strong>Emocje:</strong> Czuje się źle zrozumiana. Jej pełna historia zostaje zdefragmentowana. Frustracja: „Nie słucha tego, co naprawdę mówię!"</p>
+                        <p>⚠️ <strong>Efekt:</strong> Osoba ma poczucie, że nie ma dostępu do pełnej uwagi, jej perspektywa jest zniekształcana.</p>
+                    </div>
+
+                    <div class="red-flags">
+                        <strong>Red Flags – Czy Słuchasz Selektywnie?</strong>
+                        <ul>
+                            <li>Wychwytujesz jedną frazę i concentrujesz na niej</li>
+                            <li>Pomijasz kontekst, skok do wniosku</li>
+                            <li>Osoba mówi: „To nie o tym mówię!" – zwykle trzeba powtarzać</li>
+                            <li>Zapamiętujesz jedno słowo (np. „krytyka") i tracisz resztę</li>
+                            <li>Twoja odpowiedź nie ma związku z tym, co osoba chciała powiedzieć</li>
+                        </ul>
+                    </div>
+
+                    <div class="exercise">
+                        <strong>💪 Ćwiczenie: Wyjdź z Poziomu 3</strong>
+                        <div class="exercise-step">
+                            <div class="exercise-number">1</div>
+                            <div class="exercise-text"><strong>Wysłuchaj całości:</strong> Pozwól osobie na pełne wyjaśnienie. Nie przerywaj nawet, jeśli myślisz, że wiesz co będzie dalej.</div>
+                        </div>
+                        <div class="exercise-step">
+                            <div class="exercise-number">2</div>
+                            <div class="exercise-text"><strong>Powtórzenie:</strong> Gdy osoba skończy, powiedz: „Jeśli dobrze zrozumiałem, mówisz A, B i C – dobrze?"</div>
+                        </div>
+                        <div class="exercise-step">
+                            <div class="exercise-number">3</div>
+                            <div class="exercise-text"><strong>Priorytetyzacja:</strong> Zapytaj: „Co z tego jest dla ciebie najważniejsze?" – to uczy cię, co rzeczywiście istotne.</div>
+                        </div>
+                        <div class="exercise-step">
+                            <div class="exercise-number">4</div>
+                            <div class="exercise-text"><strong>Unikaj skoków:</strong> Jeśli chcesz coś powiedzieć – poczekaj aż osoba wyjaśni ALL A, B I C.</div>
+                        </div>
+                    </div>
+
+                    <div class="advance">
+                        <strong>🎯 Jak Przejść na Poziom 4?</strong>
+                        <div class="advance-point"><strong>Zamiast:</strong> Słuchać wybiórczych fragmentów → <strong>Rób:</strong> Słuchaj całej historii jako całości – początek, środek, koniec</div>
+                        <div class="advance-point"><strong>Zamiast:</strong> Filtrować przez swoje zainteresowania → <strong>Rób:</strong> Stawiaj sobie pytanie: „Dlaczego to jest ważne DLA TEJ OSOBY?"</div>
+                        <div class="advance-point"><strong>Zamiast:</strong> Interpretować → <strong>Rób:</strong> Najpierw zrozumiej, potem interpetuj</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- LEVEL 4 -->
+            <div class="level-card level-4">
+                <div class="level-header">
+                    <div class="level-icon">👂</div>
+                    <div>
+                        <h2>Poziom 4: Aktywne Słuchanie</h2>
+                        <p>Pełna uwaga z empatią i zainteresowaniem</p>
+                    </div>
+                </div>
+                <div class="level-content">
+                    <div class="section">
+                        <div class="section-title">Co się dzieje?</div>
+                        <p>Skupiasz pełną uwagę na rozmówcy. Słuchasz słów, ale też obserwujesz język ciała, ton głosu i emocje. Potwierddzasz, co słyszysz, zadajesz pytania wyjaśniające. To słuchanie z zamiarem zrozumienia, nie odpowiadania.</p>
+                    </div>
+
+                    <div class="section">
+                        <div class="section-title">Realne Scenariusze</div>
+                        <div class="dialog-container">
+                            <div class="dialog good">
+                                <div class="dialog-label">✅ Aktywne Słuchanie</div>
+                                <div class="speaker">Marta (żona):</div>
+                                <p>„Szef powiedział mi, że nie robię dobrze w reportach..."</p>
+                                <div class="speaker">Robert (mąż):</div>
+                                <p>„To musiało być trudne. [patrzy w oczy] Opowiedz mi o tym, co dokładnie powiedział. I jak się wtedy czułaś?"</p>
+                            </div>
+                            <div class="dialog good">
+                                <div class="dialog-label">✅ Dalej - Aktywne Słuchanie</div>
+                                <div class="speaker">Marta (żona):</div>
+                                <p>„No, powiedział, że moje analityka jest dobra, ale prezentacja słaba..."</p>
+                                <div class="speaker">Robert (mąż):</div>
+                                <p>„Aha, więc jest feedback na temat prezentacji. Ale mówił też coś pozytywnego? [potwierdza] Sobie wyobrażam, że bywałaś sfrustrowana – czy to tak?"</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="section">
+                        <div class="section-title">Psychologiczny Wpływ na Mówiącego</div>
+                        <p>🧠 <strong>Mózg wchodzi w tryb odkrywczy</strong> – czuje się bezpiecznie, aby być autentycznym. Stresor zmniejsza się.</p>
+                        <p>💔 <strong>Emocje:</strong> Poczucie widzialności, bezpieczeństwa i wartości. Osoba czuje się rozumiana. Zaufanie wzrasta gwałtownie.</p>
+                        <p>✨ <strong>Efekt:</strong> Osoba zaczyna myśleć jasniej, sama rozwiązuje problemy, więź się pogłębia.</p>
+                    </div>
+
+                    <div class="red-flags">
+                        <strong>Red Flags – Czy Nie Słuchasz Aktywnie?</strong>
+                        <ul>
+                            <li>Nie patrzysz osobie w oczy</li>
+                            <li>Twoja postawa jest sztywna, odbita (crossing arms)</li>
+                            <li>Nie zadajesz pytań wyjaśniających</li>
+                            <li>Nie potwierdzasz tego, co słyszysz</li>
+                            <li>Twoja odpowiedź nie odzwierciedla tego, co osoba czuje – tylko co powiedziała</li>
+                        </ul>
+                    </div>
+
+                    <div class="exercise">
+                        <strong>💪 Ćwiczenie: Wejdź na Poziom 4</strong>
+                        <div class="exercise-step">
+                            <div class="exercise-number">1</div>
+                            <div class="exercise-text"><strong>Rozumienie emocji:</strong> Słuchaj nie tylko słów, ale emocji za nimi. Jeśli osoba mówi: „To było trudne" – zauważ zmianę głosu, ton.</div>
+                        </div>
+                        <div class="exercise-step">
+                            <div class="exercise-number">2</div>
+                            <div class="exercise-text"><strong>Empatyczne potwierdzenie:</strong> Powiedz: „Wyobrażam sobie, że..." lub „To musiało być..." – to pokazuje, że rozumiesz emocję.</div>
+                        </div>
+                        <div class="exercise-step">
+                            <div class="exercise-number">3</div>
+                            <div class="exercise-text"><strong>Pytania wyjaśniające:</strong> Dopiero po zrozumieniu emocji zadaj pytania. „Jak do ciebie przemawiało? Co się wtedy czuło?"</div>
+                        </div>
+                        <div class="exercise-step">
+                            <div class="exercise-number">4</div>
+                            <div class="exercise-text"><strong>Fizyczna obecność:</strong> Utrzymaj kontakt wzrokowy, nachyl się lekko do przodu, kiwnij głową w potwierdzeniu.</div>
+                        </div>
+                    </div>
+
+                    <div class="advance">
+                        <strong>🎯 Jak Przejść na Poziom 5?</strong>
+                        <div class="advance-point"><strong>Zamiast:</strong> Słuchać, aby odpowiedzieć → <strong>Rób:</strong> Słuchaj, aby zrozumieć osobę na głębokim poziomie</div>
+                        <div class="advance-point"><strong>Zamiast:</strong> Czytać emocje z twarzy → <strong>Rób:</strong> Pozwól emocjom druga osoby „wejść" w ciebie – resonuj z nimi</div>
+                        <div class="advance-point"><strong>Zamiast:</strong> Być logiką → <strong>Rób:</strong> Włącz serce – pozwól sobie czuć, co czuje druga osoba</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- LEVEL 5 -->
+            <div class="level-card level-5">
+                <div class="level-header">
+                    <div class="level-icon">💜</div>
+                    <div>
+                        <h2>Poziom 5: Słuchanie ze Złączenia Serca</h2>
+                        <p>Najwyższy poziom – słuchanie z miłością i bez osądu</p>
+                    </div>
+                </div>
+                <div class="level-content">
+                    <div class="section">
+                        <div class="section-title">Co się dzieje?</div>
+                        <p>Słuchasz ze zrozumieniem emocjonalnym i wrażliwością. Wchodzisz w perspektywę drugiej osoby – słuchasz jej serca, nie tylko uszami, ale całym sobą. To słuchanie z miłością, bez osądu, bez nalepek.</p>
+                    </div>
+
+                    <div class="section">
+                        <div class="section-title">Realne Scenariusze</div>
+                        <div class="dialog-container">
+                            <div class="dialog good">
+                                <div class="dialog-label">✅ Słuchanie ze Złączenia Serca</div>
+                                <div class="speaker">Marta (żona):</div>
+                                <p>„Szef powiedział mi, że nie robię dobrze w reportach. Ale naprawdę myślę, że on po prostu mnie nie lubi..."</p>
+                                <div class="speaker">Robert (mąż):</div>
+                                <p>[Całkowita cisza. Patrzy na nią z czułością. Bierze jej rękę.] „Słucham cię. Wiem, że to trudne."</p>
+                            </div>
+                            <div class="dialog good">
+                                <div class="dialog-label">✅ Transformacja Poprzez Słuchanie</div>
+                                <div class="speaker">Marta (żona):</div>
+                                <p>[Po ciszy] „Może on ma rację. Może powinienem spróbować nowego podejścia..."</p>
+                                <div class="speaker">Robert (mąż):</div>
+                                <p>„Widzę, że znajdujesz swoją drogę. Jestem tutaj dla ciebie."</p>
+                                <p>[Jego obecność pozwoliła Marcie na samo-refleksję i wzrost]</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="section">
+                        <div class="section-title">Psychologiczny Wpływ na Mówiącego</div>
+                        <p>🧠 <strong>Mózg uwalnia potencjał leczący</strong> – oxytocyna i endorfiny wpływają systemowo. Stres dramatycznie się zmniejsza.</p>
+                        <p>💔 <strong>Emocje:</strong> Doświadcza najgłębszego uczucia bycia rozumiana i akceptowana. Pojawiają się nowe pomysły, rozwiązania, siła wewnętrzna.</p>
+                        <p>✨ <strong>Efekt:</strong> To doświadczenie transformacyjne. Osoba zaczyna wierzyć w siebie, robi zmianę życiową, relacja osiąga nowy wymiar.</p>
+                    </div>
+
+                    <div class="red-flags">
+                        <strong>Red Flags – Czy Nie Dostępujesz Poziomu 5?</strong>
+                        <ul>
+                            <li>Ciągle myślisz co powiedzieć zamiast być w momencie</li>
+                            <li>Oceniasz osobę lub jej decyzje</li>
+                            <li>Chcesz „naprawić" problem zamiast być z osobą w bólu</li>
+                            <li>Twoje ego stoi pomiędzy tobą a osobą – robisz to o sobie</li>
+                            <li>Brakuje ci autentycznego zainteresowania – robisz to na siłę</li>
+                        </ul>
+                    </div>
+
+                    <div class="exercise">
+                        <strong>💪 Ćwiczenie: Wejdź na Poziom 5</strong>
+                        <div class="exercise-step">
+                            <div class="exercise-number">1</div>
+                            <div class="exercise-text"><strong>Zapomnij o sobie:</strong> Na chwilę całkowicie. Nie myśl o tym, co będziesz mówić. Bądź jedynie dla drugiej osoby.</div>
+                        </div>
+                        <div class="exercise-step">
+                            <div class="exercise-number">2</div>
+                            <div class="exercise-text"><strong>Resonancja emocjonalna:</strong> Pozwól swoim emocjom resonować z emocjami drugiej osoby. Jeśli osoba jest smutna – pozwól sobie poczuć ten smutek.</div>
+                        </div>
+                        <div class="exercise-step">
+                            <div class="exercise-number">3</div>
+                            <div class="exercise-text"><strong>Cisza, która mówi więcej:</strong> Czasami najlepsze słuchanie to cisza. Twoja obecność = twoja miłość. Przytul, weź za rękę, bądź po prostu tam.</div>
+                        </div>
+                        <div class="exercise-step">
+                            <div class="exercise-number">4</div>
+                            <div class="exercise-text"><strong>Pozwól na zmianę:</strong> Kiedy osoba czuje się autentycznie słuchana – sama będzie szukać rozwiązań. Twoim zadaniem nie jest ratowanie, tylko bycie świadkiem jej transformacji.</div>
+                        </div>
+                    </div>
+
+                    <div class="advance">
+                        <strong>🎯 Czy Jesteś Już na Poziomie 5?</strong>
+                        <div class="advance-point"><strong>Poziom 5 to praktyka dożywotnia:</strong> Nawet wybitni psycholodzy i nauczyciele czasami spadają na niższe poziomy. To nie jest o perfekcji – to o ciągłej świadomości i próbie.</div>
+                        <div class="advance-point"><strong>Powinna być miłość bez warunków:</strong> Poziom 5 nie jest do osiągnięcia dla każdej osoby. Ale każdą sekundę warte jest spróbowanie.</div>
+                        <div class="advance-point"><strong>Owocność:</strong> Im więcej stosujesz Poziom 5, tym więcej ludzie czują się docenieni. To rozprzestrzenia się – twoja rodzina, przyjaciele, współpracownicy czują zmianę.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- COMPARISON -->
+        <div class="comparison">
+            <h2>📊 Porównanie Wszystkich Poziomów</h2>
+            <div class="comparison-grid">
+                <div class="comparison-item level-1">
+                    <h4>❌ Poziom 1</h4>
+                    <p><strong>Ignorowanie</strong></p>
+                    <p>Brakuje skupienia</p>
+                    <p>Osoba czuje: odrzucenie</p>
+                    <p>Relacja: rozpada się</p>
+                </div>
+                <div class="comparison-item level-2">
+                    <h4>⚠️ Poziom 2</h4>
+                    <p><strong>Pozorowanie</strong></p>
+                    <p>Czekanie na kolej</p>
+                    <p>Osoba czuje: niewartościowa</p>
+                    <p>Relacja: powierzchowna</p>
+                </div>
+                <div class="comparison-item level-3">
+                    <h4>⚡ Poziom 3</h4>
+                    <p><strong>Selektywne</strong></p>
+                    <p>Słuchanie wybiórcze</p>
+                    <p>Osoba czuje: źle zrozumiana</p>
+                    <p>Relacja: fragmentaryczna</p>
+                </div>
+                <div class="comparison-item level-4">
+                    <h4>✅ Poziom 4</h4>
+                    <p><strong>Aktywne</strong></p>
+                    <p>Pełna uwaga + empatia</p>
+                    <p>Osoba czuje: widziana</p>
+                    <p>Relacja: solidna</p>
+                </div>
+                <div class="comparison-item level-5">
+                    <h4>💜 Poziom 5</h4>
+                    <p><strong>Ze Złączenia</strong></p>
+                    <p>Serce do serca</p>
+                    <p>Osoba czuje: kochana</p>
+                    <p>Relacja: transformacyjna</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="cta-section">
+            <h3>Gotów(-a) na zmianę?</h3>
+            <p style="margin-bottom: 30px; font-size: 1.1em;">Zacznij od dzisiaj – wybierz jeden poziom powyżej i pracuj na jego ćwiczeniach. Za tydzień zobaczysz zmianę w swoich relacjach.</p>
+            <button class="btn" onclick="alert('Ćwiczenia dostępne w pełnej wersji. Zacznij od dziś!')">Zacznij Ćwiczenia</button>
+        </div>
+    </div>
+</body>
+</html>
